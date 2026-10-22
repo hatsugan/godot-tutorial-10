@@ -3,17 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://cvro04fgav35p" path="res://assets/art/monsters/salamander.png" id="1_6ogee"]
 [ext_resource type="Script" uid="uid://7betxel25rv8" path="res://scripts/content/species_resource.gd" id="1_onk3r"]
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="3_tlkrm"]
-[ext_resource type="Resource" uid="uid://xdeavx7x3eb2" path="res://content/moves/smack.tres" id="4_tjeay"]
 [ext_resource type="Resource" uid="uid://ca4tmlywk0wb2" path="res://content/moves/torch.tres" id="5_gu56f"]
 [ext_resource type="Resource" uid="uid://cctmlgij4rqdn" path="res://content/moves/regenerate.tres" id="6_tjeay"]
 [ext_resource type="Resource" uid="uid://btq4q8mdx4pqm" path="res://content/moves/dagger_dance.tres" id="7_gu56f"]
+[ext_resource type="Resource" uid="uid://dtofht0sksv05" path="res://content/moves/sting_neurotoxin.tres" id="7_vqvjt"]
 
 [resource]
 script = ExtResource("1_onk3r")
 image = ExtResource("1_6ogee")
 name = "Salamander"
 type = 2
-starter_moves = Array[ExtResource("3_tlkrm")]([ExtResource("4_tjeay"), ExtResource("5_gu56f"), ExtResource("6_tjeay"), ExtResource("7_gu56f")])
+starter_moves = Array[ExtResource("3_tlkrm")]([ExtResource("5_gu56f"), ExtResource("6_tjeay"), ExtResource("7_gu56f"), ExtResource("7_vqvjt")])
 base_max_hp = 20
 base_attack = 7
 base_defence = 3

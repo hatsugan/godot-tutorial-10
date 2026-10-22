@@ -37,7 +37,7 @@ const EFFECTIVENESS_BY_TYPE: Dictionary[Type, Dictionary] = {
 	}
 }
 
-static func get_effectiveness_multiplier(source_type: Type, target_type: Type) -> float:
+static func get_factor_type_effectiveness(source_type: Type, target_type: Type) -> float:
 	if !EFFECTIVENESS_BY_TYPE.has(source_type) or !EFFECTIVENESS_BY_TYPE[source_type].has(target_type):
 		return 1.0
 	else:

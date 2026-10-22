@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://dtofht0sksv05"]
+
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_222uf"]
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_ystkk"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_a7xdb"]
+[ext_resource type="Resource" uid="uid://cmlhsoi6jxibt" path="res://content/conditions/paralyze.tres" id="4_a7xdb"]
+[ext_resource type="Script" uid="uid://bcr6vmt0tq1il" path="res://scripts/content/targeted_effects/add_condition.gd" id="5_rrsqq"]
+
+[sub_resource type="Resource" id="Resource_85k6i"]
+script = ExtResource("3_a7xdb")
+base_damage = 5
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("5_rrsqq")
+condition_resource = ExtResource("4_a7xdb")
+chance_to_apply = 0.5
+metadata/_custom_type_script = "uid://bcr6vmt0tq1il"
+
+[resource]
+script = ExtResource("1_222uf")
+name = "Neurotoxin Sting"
+usage_max = 5
+use_effects = Array[ExtResource("2_ystkk")]([SubResource("Resource_85k6i"), SubResource("Resource_tipki")])
+type = 4
+metadata/_custom_type_script = "uid://3l71cyerjkfn"

@@ -45,16 +45,33 @@ func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
 	monster.moves = moves
 	
 	return monster
+	
+func get_current_monster() -> Monster:
+	if game_state.is_player_turn:
+		return game_state.player_monster
+	else:
+		return game_state.opponent_monster
 
 func use_monster_move_by_index(monster: Monster, move_idx: int):
 	var move = monster.moves[move_idx]
 	
-	if move.usages < 1:
-		return
-	move.usages -= 1
-	
+	# Log move use attempt
 	var use_message = move.use_message.format({"user_name": monster.name, "move_name": move.name})
 	Events.request_log.emit(use_message)
+		
+	if move.usages < 1:
+		Events.request_log.emit(" But it failed...")
+		GameRunner.on_turn_ended()
+		return
+	
+	# Check move not blocked
+	if monster.move_blocked:
+		Events.request_log.emit(" But if failed. %s cannot move..."%[monster.name])
+		monster.move_blocked = false
+		GameRunner.on_turn_ended()
+		return
+	
+	move.usages -= 1
 	
 	var rngf = rng.randf()
 	var move_acc = move.base_accuracy
@@ -71,8 +88,19 @@ func use_monster_move_by_index(monster: Monster, move_idx: int):
 	GameRunner.on_turn_ended()
 
 func instantiate_condition_on_monster(monster: Monster, condition_resource: ConditionResource):
-	var condition = Condition.new()
-	condition.resource = condition_resource
-	monster.conditions.append(condition)
+	# NOTE Lambda filter NEEDS a return!!
+	var num_current_conditions = monster.conditions.filter(func(condition): return condition.resource == condition_resource).size()
+	if num_current_conditions < condition_resource.max_stack:
+		var condition = Condition.new()
+		condition.resource = condition_resource
+		condition.duration_remaining = condition.resource.duration
+		monster.conditions.append(condition)
+	
+	Events.request_log.emit(" " + condition_resource.application_str.format({"monster_name": monster.name}))
+	Events.on_monster_updated.emit(monster)
+
+func end_condition(monster: Monster, condition: Condition):
+	monster.conditions.remove_at(monster.conditions.find(condition))
 	
 	Events.on_monster_updated.emit(monster)
+	

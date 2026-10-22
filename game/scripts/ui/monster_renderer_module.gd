@@ -67,3 +67,4 @@ func update():
 		"hp": bound_monster.hp,
 		"max_hp": bound_monster.max_hp
 	})
+	status_label.text = bound_monster.get_condition_string()

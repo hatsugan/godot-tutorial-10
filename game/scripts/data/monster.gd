@@ -5,6 +5,7 @@ var hp: int
 var nickname: String
 var moves: Array[Move]
 var conditions: Array[Condition]
+var move_blocked: bool
 
 var image: Texture2D:
 	get: return species.image
@@ -46,6 +47,12 @@ func sum_condition_stats_by_code(code: Stat.Code):
 			if stat_modifier.stat_code == code:
 				sum += stat_modifier.mod_add
 	return sum
+	
+func get_condition_string():
+	if conditions.size() == 0:
+		return ""
+	else:
+		return conditions[0].resource.short_name
 
 func get_usable_move_indices() -> Array[int]:
 	var usable_idxs: Array[int] = []
@@ -57,11 +64,11 @@ func get_usable_move_indices() -> Array[int]:
 func dump_state() -> String:
 	var conditions_string = ""
 	for condition in conditions:
-		conditions_string += condition.name + ", "
+		conditions_string += "\n " + condition.name + " (%s)"%[condition.duration_remaining]
 	
 	var moves_string = ""
 	for move in moves:
-		moves_string += " " + move.name + ", acc {acc}% ({u}/{um})\n".format({
+		moves_string += " " + move.name + "- acc {acc}% ({u}/{um})\n".format({
 			"acc": move.base_accuracy*100,
 			"u": move.usages,
 			"um": move.max_usages

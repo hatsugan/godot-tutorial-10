@@ -44,7 +44,8 @@ func setup_model():
 	# Basic turn order
 	# TODO: Make better
 	game_state.is_player_turn = game_state.player_monster.speed >= game_state.opponent_monster.speed
-	
+	log_round_header()
+	log_turn_header()
 	return
 	
 func handle_request_menu_fight():
@@ -75,8 +76,10 @@ func handle_menu_option_by_index(mode: INTERACTION_MODE, index: int):
 	
 	Events.on_menu_option_selected.emit()
 
+
 func handle_menu_option_selected(mode: INTERACTION_MODE, index: int):
 	print("Selecting mode: %s  number: %d"%[mode, index])
+	
 	
 func handle_run():
 	Events.request_log.emit("Call the wambulance! You ran away...")
@@ -89,8 +92,35 @@ func handle_run():
 	
 	timer.start()
 	
+	
+func log_round_header():
+	var turn_str = "\n======  ROUND %d  ======"%[game_state.current_round]
+	Events.request_log.emit(turn_str)	
+	
+func log_turn_header():
+	var turn_str = "-- Player Turn --" if game_state.is_player_turn else "-- Opponent Turn --"
+	Events.request_log.emit(turn_str)
+	
+	
+func on_turn_begun():
+	var monster = MonsterController.get_current_monster()
+	log_turn_header()
+	
+	for condition in monster.conditions:
+		for effect in condition.resource.on_begin_turn_effects:
+			effect._do(monster, condition, game_state)
+		condition.duration_remaining -= 1
+		if condition.duration_remaining <= 0:
+			MonsterController.end_condition(monster, condition)
+	
 func on_turn_ended():
 	game_state.is_player_turn = !game_state.is_player_turn
+	game_state.num_turns += 1
+	if game_state.num_turns % 2 == 0:
+		game_state.current_round += 1
+		log_round_header()
+		
+	on_turn_begun()
 	
 func run_ai_turn():
 	var monster = game_state.opponent_monster
@@ -103,3 +133,5 @@ func run_ai_turn():
 	else:
 		var move_idx = usable_move_idxs.pick_random()
 		MonsterController.use_monster_move_by_index(monster, move_idx)
+		#Events.on_monster_updated.emit(monster)
+		#on_turn_ended()

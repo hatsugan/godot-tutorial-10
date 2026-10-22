@@ -17,3 +17,7 @@ var base_accuracy: float:
 	
 var max_usages: int:
 	get: return resource.usage_max
+
+# for duck typing in TargetedEffect
+func get_type() -> MonsterType.Type:
+	return type
