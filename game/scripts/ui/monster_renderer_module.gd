@@ -61,9 +61,9 @@ func update():
 	#print("update")
 	name_label.text = bound_monster.name.to_upper()
 	sprite.texture = bound_monster.image
-	hp_bar.max_value = bound_monster.species.max_hp
+	hp_bar.max_value = bound_monster.max_hp
 	hp_bar.value = bound_monster.hp
 	hp_label.text = "{hp}\\{max_hp}".format({
 		"hp": bound_monster.hp,
-		"max_hp": bound_monster.species.max_hp
+		"max_hp": bound_monster.max_hp
 	})

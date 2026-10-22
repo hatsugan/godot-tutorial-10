@@ -4,17 +4,24 @@ class_name DoDamage extends TargetedEffect
 
 func _do(doer: Monster, source: Move, game_state: GameState):
 	var target = doer if target_self else MonsterController.get_monster_opponent(doer)
+	
+	# Damage Type Multiplier
 	var effectiveness_multiplier: float = MonsterType.get_effectiveness_multiplier(\
 	source.type, target.type)
 	
-	var damage = effectiveness_multiplier * base_damage
+	# Damage Stat Difference Multiplier
+	var stat_diff_multiplier: float = doer.attack / max(target.defence, 1)
+	
+	# Damage Calculation
+	var damage = clamp(effectiveness_multiplier * stat_diff_multiplier * base_damage, StatLimits.minHP, StatLimits.maxHP)
 	MonsterController.adjust_monster_hp(target, -damage)
+	
 	#print("DoDamage: base_damage=%d"%[base_damage])
 	
 	var str_verb: String = "hits"
-	var str_target: String = "self" if target_self else doer.name
+	var str_target: String = "self" if target_self else target.name
 	
-	Events.request_log.emit("{doer} {verb} {target} for {damage} damage.".format({
+	Events.request_log.emit(" {doer} {verb} {target} for {damage} damage.".format({
 		"doer": doer.name,
 		"verb": str_verb,
 		"target": str_target,

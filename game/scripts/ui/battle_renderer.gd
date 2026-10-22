@@ -9,6 +9,9 @@ func _ready() -> void:
 	enemy_mon_module.connect_events()
 	player_mon_module.connect_events()
 	
+	enemy_mon_state_dump.connect_events()
+	player_mon_state_dump.connect_events()
+	
 	Events.on_ui_ready.emit()
 	
 	# Connect signal listeners

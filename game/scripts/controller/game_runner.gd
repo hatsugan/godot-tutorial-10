@@ -19,6 +19,10 @@ func _ready():
 	
 	Events.on_ui_ready.connect(setup_model)
 	
+func _process(_delta: float) -> void:
+	if !game_state.is_player_turn:
+		run_ai_turn()
+	
 func setup_model():
 	game_state = GameState.new()
 	rng = RandomNumberGenerator.new()
@@ -31,11 +35,15 @@ func setup_model():
 	var species_dino = preload("res://content/species/dino.tres")
 
 	var monster1 = MonsterController.create_monster(species_salamander)
-	var monster2 = MonsterController.create_monster(species_turtle, "Torta")
-	var monster3 = MonsterController.create_monster(species_dino, "Deena")
+	var monster2 = MonsterController.create_monster(species_turtle)
+	var monster3 = MonsterController.create_monster(species_dino)
 	
 	game_state.player = TrainerController.create_trainer([monster1, monster2], true)
 	game_state.opponent = TrainerController.create_trainer([monster3], false)
+	
+	# Basic turn order
+	# TODO: Make better
+	game_state.is_player_turn = game_state.player_monster.speed >= game_state.opponent_monster.speed
 	
 	return
 	
@@ -62,6 +70,8 @@ func handle_menu_option_by_index(mode: INTERACTION_MODE, index: int):
 			
 		INTERACTION_MODE.FIGHT:
 			MonsterController.use_monster_move_by_index(game_state.player.current_monster, index)
+		
+
 	
 	Events.on_menu_option_selected.emit()
 
@@ -79,3 +89,17 @@ func handle_run():
 	
 	timer.start()
 	
+func on_turn_ended():
+	game_state.is_player_turn = !game_state.is_player_turn
+	
+func run_ai_turn():
+	var monster = game_state.opponent_monster
+	var usable_move_idxs = monster.get_usable_move_indices()
+	
+	if usable_move_idxs.size() <= 0:
+		# TODO: struggle move?
+		Events.request_log.emit("%s has exhausted all its moves!"%[monster.name])
+		on_turn_ended()
+	else:
+		var move_idx = usable_move_idxs.pick_random()
+		MonsterController.use_monster_move_by_index(monster, move_idx)

@@ -3,11 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://tovydk4i6a4q" path="res://assets/art/monsters/dino.png" id="1_htcjd"]
 [ext_resource type="Script" uid="uid://7betxel25rv8" path="res://scripts/content/species_resource.gd" id="1_pqx4l"]
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="3_gfe2g"]
+[ext_resource type="Resource" uid="uid://cxkul77gxkea8" path="res://content/moves/thorn.tres" id="4_br6pm"]
 
 [resource]
 script = ExtResource("1_pqx4l")
 image = ExtResource("1_htcjd")
 name = "Dino"
-max_hp = 35
 type = 4
+starter_moves = Array[ExtResource("3_gfe2g")]([ExtResource("4_br6pm")])
+base_max_hp = 23
+base_attack = 6
+base_defence = 6
+base_speed = 5
 metadata/_custom_type_script = "uid://7betxel25rv8"

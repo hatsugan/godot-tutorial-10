@@ -16,5 +16,6 @@ script = ExtResource("1_tbhuo")
 name = "Regenerate"
 usage_max = 5
 use_effects = Array[ExtResource("2_35isn")]([SubResource("Resource_3kg54")])
+type = 3
 base_accuracy = 1.0
 metadata/_custom_type_script = "uid://3l71cyerjkfn"

@@ -20,7 +20,7 @@ zoom = Vector2(2, 2)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 410.0
-offset_bottom = 178.0
+offset_bottom = 300.0
 theme = ExtResource("2_trceg")
 script = ExtResource("3_a8y0u")
 enemy_mon_module = NodePath("left/mon_renderer_module")
@@ -48,8 +48,8 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 194.0
 offset_top = 5.0
-offset_right = 447.0
-offset_bottom = 241.0
+offset_right = 546.0
+offset_bottom = 302.0
 theme = ExtResource("2_trceg")
 theme_override_fonts/font = ExtResource("9_gqmmt")
 current_tab = 0
@@ -60,6 +60,7 @@ layout_mode = 2
 [node name="you" parent="battle_renderer/tabs" unique_id=485522894 instance=ExtResource("8_eb6dy")]
 visible = false
 layout_mode = 2
+your_monster = true
 
 [node name="them" parent="battle_renderer/tabs" unique_id=430834180 instance=ExtResource("8_eb6dy")]
 visible = false
