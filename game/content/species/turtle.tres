@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://buxaciimd6ihy"]
+
+[ext_resource type="Texture2D" uid="uid://q5ukv4r8xxs1" path="res://assets/art/monsters/turtle.png" id="1_0qrp4"]
+[ext_resource type="Script" uid="uid://7betxel25rv8" path="res://scripts/content/species_resource.gd" id="1_mo2eo"]
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="3_wkrva"]
+
+[resource]
+script = ExtResource("1_mo2eo")
+image = ExtResource("1_0qrp4")
+name = "Turtle"
+max_hp = 40
+type = 3
+metadata/_custom_type_script = "uid://7betxel25rv8"

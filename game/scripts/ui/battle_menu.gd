@@ -19,9 +19,11 @@ func _ready():
 	select_item.pressed.connect(Events.request_menu_items.emit)
 	select_run.pressed.connect(handle_select_run)
 	select_back.pressed.connect(handle_select_main)
+	
 	Events.on_menu_fight.connect(handle_select_fight)
 	Events.on_menu_select_monster.connect(handle_select_monsters)
 	Events.on_menu_items.connect(handle_select_items)
+	Events.on_menu_option_selected.connect(handle_select_main)
 	
 	# Anytime an option is successfully selected, we want to reutrn to main. Underscored variables ignored.
 	Events.request_option_selected.connect(func(_mode, _index): handle_select_main())
@@ -79,5 +81,6 @@ func handle_select_run():
 	# Since we only have battles and no overworld in this prototype, running means quitting.
 	if is_interaction_blocked():
 		return
-
-	Events.request_quit.emit()
+	
+	Events.request_menu_run.emit()
+	
