@@ -1,0 +1,49 @@
+{
+  "column_properties": {
+    "res://content/moves/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      },
+      "use_effects": {
+        "visibility": 0
+      }
+    },
+    "res://content/moves::use_effects/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://content/species/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      },
+      "resource_path": {
+        "visibility": 0
+      }
+    }
+  },
+  "recent_paths": [
+    "res://content/moves/",
+    "res://content/moves::use_effects/",
+    "res://content/species/"
+  ],
+  "table_functions": {}
+}

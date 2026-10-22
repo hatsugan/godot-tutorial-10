@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://cxkul77gxkea8"]
+
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_7bpfd"]
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_6lk1c"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_6lk1c"]
+
+[sub_resource type="Resource" id="Resource_gog2m"]
+script = ExtResource("3_6lk1c")
+base_damage = 5
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[sub_resource type="Resource" id="Resource_766ik"]
+script = ExtResource("3_6lk1c")
+base_damage = 5
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_7bpfd")
+name = "Thorn"
+usage_max = 4
+use_effects = Array[ExtResource("2_6lk1c")]([SubResource("Resource_gog2m"), SubResource("Resource_766ik")])
+type = 4
+base_accuracy = 0.7
+metadata/_custom_type_script = "uid://3l71cyerjkfn"
