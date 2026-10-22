@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsstlaea5k8aw"]
+[gd_scene format=3 uid="uid://dsstlaea5k8aw"]
 
 [ext_resource type="Theme" uid="uid://bwqrj7njjbn07" path="res://ui/main.tres" id="2_trceg"]
 [ext_resource type="Script" uid="uid://b7eoh6vvt5ick" path="res://scripts/ui/battle_renderer.gd" id="3_a8y0u"]
@@ -9,13 +9,14 @@
 [ext_resource type="FontFile" uid="uid://xj2o3brbo27g" path="res://assets/fonts/basis33.ttf" id="9_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://nm6g7isc13cg" path="res://scenes/outcome.tscn" id="10_a8y0u"]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" unique_id=1912091790]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(196.46, 180)
-zoom = Vector2(2.57, 2.57)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=757516253]
+offset = Vector2(-20, -20)
+anchor_mode = 0
+zoom = Vector2(2, 2)
 
-[node name="battle_renderer" type="Control" parent="." node_paths=PackedStringArray("enemy_mon_module", "player_mon_module", "enemy_mon_state_dump", "player_mon_state_dump")]
+[node name="battle_renderer" type="Control" parent="." unique_id=232685100 node_paths=PackedStringArray("enemy_mon_module", "player_mon_module", "enemy_mon_state_dump", "player_mon_state_dump")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 410.0
@@ -27,44 +28,45 @@ player_mon_module = NodePath("left/mon_renderer_module2")
 enemy_mon_state_dump = NodePath("tabs/them")
 player_mon_state_dump = NodePath("tabs/you")
 
-[node name="left" type="VBoxContainer" parent="battle_renderer"]
+[node name="left" type="VBoxContainer" parent="battle_renderer" unique_id=1728499411]
 layout_mode = 0
-offset_right = 148.0
-offset_bottom = 164.0
+offset_right = 156.0
+offset_bottom = 239.0
 
-[node name="mon_renderer_module" parent="battle_renderer/left" instance=ExtResource("4_jkv2x")]
+[node name="mon_renderer_module" parent="battle_renderer/left" unique_id=1475706486 instance=ExtResource("4_jkv2x")]
 layout_mode = 2
 
-[node name="mon_renderer_module2" parent="battle_renderer/left" instance=ExtResource("4_jkv2x")]
+[node name="mon_renderer_module2" parent="battle_renderer/left" unique_id=1609080625 instance=ExtResource("4_jkv2x")]
+layout_mode = 2
+your_pov = true
+
+[node name="controls_menu" parent="battle_renderer/left" unique_id=356875257 instance=ExtResource("5_choun")]
 layout_mode = 2
 
-[node name="controls_menu" parent="battle_renderer/left" instance=ExtResource("5_choun")]
-layout_mode = 2
-
-[node name="tabs" type="TabContainer" parent="battle_renderer"]
+[node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=926631143]
 texture_filter = 1
 layout_mode = 0
 offset_left = 194.0
 offset_top = 5.0
 offset_right = 447.0
-offset_bottom = 302.0
+offset_bottom = 241.0
 theme = ExtResource("2_trceg")
 theme_override_fonts/font = ExtResource("9_gqmmt")
 current_tab = 0
 
-[node name="log" parent="battle_renderer/tabs" instance=ExtResource("7_ya4ey")]
+[node name="log" parent="battle_renderer/tabs" unique_id=466996137 instance=ExtResource("7_ya4ey")]
 layout_mode = 2
 
-[node name="you" parent="battle_renderer/tabs" instance=ExtResource("8_eb6dy")]
+[node name="you" parent="battle_renderer/tabs" unique_id=485522894 instance=ExtResource("8_eb6dy")]
 visible = false
 layout_mode = 2
 
-[node name="them" parent="battle_renderer/tabs" instance=ExtResource("8_eb6dy")]
+[node name="them" parent="battle_renderer/tabs" unique_id=430834180 instance=ExtResource("8_eb6dy")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="outcome" parent="battle_renderer" instance=ExtResource("10_a8y0u")]
+[node name="outcome" parent="battle_renderer" unique_id=1306549777 instance=ExtResource("10_a8y0u")]
 visible = false
 layout_mode = 0
 offset_left = 0.0

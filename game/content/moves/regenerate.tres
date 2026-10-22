@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://cctmlgij4rqdn"]
+
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_tbhuo"]
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_35isn"]
+[ext_resource type="Script" uid="uid://cvhrilvjguaqj" path="res://scripts/content/targeted_effects/do_heal.gd" id="3_35isn"]
+
+[sub_resource type="Resource" id="Resource_3kg54"]
+script = ExtResource("3_35isn")
+base_heal = 10
+outcome_filter = 2
+target_self = true
+metadata/_custom_type_script = "uid://cvhrilvjguaqj"
+
+[resource]
+script = ExtResource("1_tbhuo")
+name = "Regenerate"
+usage_max = 5
+use_effects = Array[ExtResource("2_35isn")]([SubResource("Resource_3kg54")])
+base_accuracy = 1.0
+metadata/_custom_type_script = "uid://3l71cyerjkfn"

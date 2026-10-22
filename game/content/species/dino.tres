@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://bsx0npq2xhugq"]
+
+[ext_resource type="Texture2D" uid="uid://tovydk4i6a4q" path="res://assets/art/monsters/dino.png" id="1_htcjd"]
+[ext_resource type="Script" uid="uid://7betxel25rv8" path="res://scripts/content/species_resource.gd" id="1_pqx4l"]
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="3_gfe2g"]
+
+[resource]
+script = ExtResource("1_pqx4l")
+image = ExtResource("1_htcjd")
+name = "Dino"
+max_hp = 35
+type = 4
+metadata/_custom_type_script = "uid://7betxel25rv8"
