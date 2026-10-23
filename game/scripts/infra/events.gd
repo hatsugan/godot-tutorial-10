@@ -25,4 +25,5 @@ signal on_monster_updated
 
 # Events sent internally
 signal request_log
+signal request_log_clear
 signal on_ui_ready

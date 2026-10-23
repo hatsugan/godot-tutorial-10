@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://bm1e7tu6116uy"]
+
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_aml7c"]
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_ypgjl"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_ypgjl"]
+
+[sub_resource type="Resource" id="Resource_br6pm"]
+script = ExtResource("3_ypgjl")
+base_damage = 30
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_aml7c")
+name = "Quick Jab"
+type = 1
+base_accuracy = 0.8
+priority = 1
+usage_max = 15
+use_effects = Array[ExtResource("2_ypgjl")]([SubResource("Resource_br6pm")])
+metadata/_custom_type_script = "uid://3l71cyerjkfn"

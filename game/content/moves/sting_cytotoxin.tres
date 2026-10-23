@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_tipki"]
 script = ExtResource("3_xhbyl")
-base_damage = 5
+base_damage = 30
 metadata/_custom_type_script = "uid://fibswyx5ajt5"
 
 [sub_resource type="Resource" id="Resource_85g3d"]
@@ -20,7 +20,8 @@ metadata/_custom_type_script = "uid://bcr6vmt0tq1il"
 [resource]
 script = ExtResource("1_n67po")
 name = "Cytotoxin Sting"
-usage_max = 5
-use_effects = Array[ExtResource("2_x7nuh")]([SubResource("Resource_tipki"), SubResource("Resource_85g3d")])
 type = 4
+base_accuracy = 0.7
+usage_max = 10
+use_effects = Array[ExtResource("2_x7nuh")]([SubResource("Resource_tipki"), SubResource("Resource_85g3d")])
 metadata/_custom_type_script = "uid://3l71cyerjkfn"

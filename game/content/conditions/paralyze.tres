@@ -17,6 +17,6 @@ name = "Paralyze"
 on_begin_turn_effects = Array[ExtResource("1_hufe4")]([SubResource("Resource_hufe4")])
 duration = 3
 max_stack = 1
-short_name = "PLZ"
+short_name = "PRLZ"
 application_str = "{monster_name} is paralyzed!"
 metadata/_custom_type_script = "uid://b7gbkfrkv7t6i"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://dthhofcfx5jqp"]
+
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_yh6g2"]
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_1hdul"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_mhxif"]
+
+[sub_resource type="Resource" id="Resource_4w4es"]
+script = ExtResource("3_mhxif")
+base_damage = 20
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[sub_resource type="Resource" id="Resource_55m4s"]
+script = ExtResource("3_mhxif")
+base_damage = 10
+effect_verb_str = "hurts"
+outcome_filter = 2
+target_self = true
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_yh6g2")
+name = "Struggle"
+type = 1
+use_message = "{user_name} flails in desparation..."
+base_accuracy = 0.7
+usage_max = 9999
+use_effects = Array[ExtResource("2_1hdul")]([SubResource("Resource_4w4es"), SubResource("Resource_55m4s")])
+metadata/_custom_type_script = "uid://3l71cyerjkfn"

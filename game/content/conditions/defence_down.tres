@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ConditionResource" format=3 uid="uid://ctlhcsh0gvdtc"]
+
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="1_g01vo"]
+[ext_resource type="Script" uid="uid://b7gbkfrkv7t6i" path="res://scripts/content/condition_resource.gd" id="2_6pywn"]
+[ext_resource type="Script" uid="uid://byab874rev56u" path="res://scripts/content/stat_mod_resource.gd" id="3_7qo8t"]
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_7qo8t")
+stat_code = 1
+mod_mode = 1
+mod_mul = 0.8
+metadata/_custom_type_script = "uid://byab874rev56u"
+
+[resource]
+script = ExtResource("2_6pywn")
+name = "Defence Down"
+stat_modifiers = Array[ExtResource("3_7qo8t")]([SubResource("Resource_tipki")])
+duration = 5
+max_stack = 3
+short_name = "DEF-"
+application_str = "{monster_name}'s defence decreased"
+metadata/_custom_type_script = "uid://b7gbkfrkv7t6i"

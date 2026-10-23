@@ -27,9 +27,13 @@ func _ready():
 	
 	# Anytime an option is successfully selected, we want to reutrn to main. Underscored variables ignored.
 	Events.request_option_selected.connect(func(_mode, _index): handle_select_main())
+	
+	Events.on_game_over.connect(func(_outcome): hide())
+	Events.on_new_gamestate_created.connect(show)
 
 	# Activate the main menu 
 	handle_select_main()
+
 
 func is_interaction_blocked():
 	# TODO: We will want to block interaction at some point. We can use this for that.

@@ -68,7 +68,6 @@ layout_mode = 2
 metadata/_tab_index = 2
 
 [node name="outcome" parent="battle_renderer" unique_id=1306549777 instance=ExtResource("10_a8y0u")]
-visible = false
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0

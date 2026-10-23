@@ -6,13 +6,13 @@
 
 [sub_resource type="Resource" id="Resource_d0u3u"]
 script = ExtResource("3_yx2ie")
-base_damage = 20
+base_damage = 40
 metadata/_custom_type_script = "uid://fibswyx5ajt5"
 
 [resource]
 script = ExtResource("1_dwguc")
 name = "Torch"
-usage_max = 15
-use_effects = Array[ExtResource("2_h48l8")]([SubResource("Resource_d0u3u")])
 type = 2
+usage_max = 25
+use_effects = Array[ExtResource("2_h48l8")]([SubResource("Resource_d0u3u")])
 metadata/_custom_type_script = "uid://3l71cyerjkfn"

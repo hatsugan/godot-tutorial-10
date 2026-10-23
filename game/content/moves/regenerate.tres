@@ -6,7 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_3kg54"]
 script = ExtResource("3_35isn")
-base_heal = 10
+percentage_heal_enabled = true
+percentage_heal_fraction = 0.33
 outcome_filter = 2
 target_self = true
 metadata/_custom_type_script = "uid://cvhrilvjguaqj"
@@ -14,8 +15,8 @@ metadata/_custom_type_script = "uid://cvhrilvjguaqj"
 [resource]
 script = ExtResource("1_tbhuo")
 name = "Regenerate"
-usage_max = 5
-use_effects = Array[ExtResource("2_35isn")]([SubResource("Resource_3kg54")])
 type = 3
 base_accuracy = 1.0
+usage_max = 10
+use_effects = Array[ExtResource("2_35isn")]([SubResource("Resource_3kg54")])
 metadata/_custom_type_script = "uid://3l71cyerjkfn"

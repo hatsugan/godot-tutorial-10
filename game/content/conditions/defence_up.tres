@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ConditionResource" format=3 uid="uid://b16uad13py0f"]
+
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="1_tyhgg"]
+[ext_resource type="Script" uid="uid://b7gbkfrkv7t6i" path="res://scripts/content/condition_resource.gd" id="2_rlo48"]
+[ext_resource type="Script" uid="uid://byab874rev56u" path="res://scripts/content/stat_mod_resource.gd" id="3_wybh2"]
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_wybh2")
+stat_code = 1
+mod_mode = 1
+mod_mul = 1.25
+metadata/_custom_type_script = "uid://byab874rev56u"
+
+[resource]
+script = ExtResource("2_rlo48")
+name = "Defence Up"
+stat_modifiers = Array[ExtResource("3_wybh2")]([SubResource("Resource_tipki")])
+duration = 5
+max_stack = 3
+short_name = "DEF+"
+application_str = "{monster_name}'s defence increased"
+metadata/_custom_type_script = "uid://b7gbkfrkv7t6i"

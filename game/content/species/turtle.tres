@@ -3,12 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://q5ukv4r8xxs1" path="res://assets/art/monsters/turtle.png" id="1_0qrp4"]
 [ext_resource type="Script" uid="uid://7betxel25rv8" path="res://scripts/content/species_resource.gd" id="1_mo2eo"]
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="3_wkrva"]
+[ext_resource type="Resource" uid="uid://cwstkqw66672i" path="res://content/moves/tackle.tres" id="4_nyfi6"]
+[ext_resource type="Resource" uid="uid://bw2ctqlqb1pcc" path="res://content/moves/squirt.tres" id="5_by2qv"]
+[ext_resource type="Resource" uid="uid://dtofht0sksv05" path="res://content/moves/sting_neurotoxin.tres" id="6_gpg0y"]
+[ext_resource type="Resource" uid="uid://b5bovdldy3guj" path="res://content/moves/toughen.tres" id="7_by2qv"]
+[ext_resource type="Resource" uid="uid://brb4rb60ew2qq" path="res://content/moves/power_word_kill.tres" id="8_gpg0y"]
 
 [resource]
 script = ExtResource("1_mo2eo")
 image = ExtResource("1_0qrp4")
 name = "Turtle"
 type = 3
+starter_moves = Array[ExtResource("3_wkrva")]([ExtResource("4_nyfi6"), ExtResource("5_by2qv"), ExtResource("6_gpg0y"), ExtResource("7_by2qv"), ExtResource("8_gpg0y")])
 base_max_hp = 25
 base_attack = 4
 base_defence = 7

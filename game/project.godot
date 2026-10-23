@@ -38,6 +38,7 @@ Events="*res://scripts/infra/events.gd"
 GameRunner="*res://scripts/controller/game_runner.gd"
 MonsterController="*uid://dtqekxrxknvil"
 TrainerController="*uid://bnskibpjyw22s"
+ProjLog="*uid://c2a8en0bdua4w"
 
 [dotnet]
 

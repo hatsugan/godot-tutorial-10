@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ConditionResource" format=3 uid="uid://cb4gfujrm87io"]
+
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="1_tf75u"]
+[ext_resource type="Script" uid="uid://b7gbkfrkv7t6i" path="res://scripts/content/condition_resource.gd" id="2_2fsdg"]
+[ext_resource type="Script" uid="uid://byab874rev56u" path="res://scripts/content/stat_mod_resource.gd" id="3_e8461"]
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_e8461")
+mod_mode = 1
+mod_mul = 1.25
+metadata/_custom_type_script = "uid://byab874rev56u"
+
+[resource]
+script = ExtResource("2_2fsdg")
+name = "Attack Up"
+stat_modifiers = Array[ExtResource("3_e8461")]([SubResource("Resource_tipki")])
+duration = 5
+max_stack = 3
+short_name = "ATK+"
+application_str = "{monster_name}'s attack increased"
+metadata/_custom_type_script = "uid://b7gbkfrkv7t6i"

@@ -1,49 +1,94 @@
 {
   "column_properties": {
-    "res://content/moves/": {
+    "": {
       "metadata/_custom_type_script": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_local_to_scene": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_name": {
-        "visibility": 0
+        "visibility": 0.0
+      }
+    },
+    "res://content/conditions/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://content/conditions::stat_modifiers/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://content/moves/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
       },
       "use_effects": {
-        "visibility": 0
+        "visibility": 1.0
       }
     },
     "res://content/moves::use_effects/": {
       "metadata/_custom_type_script": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_local_to_scene": {
-        "visibility": 0
+        "visibility": 1.0
       },
       "resource_name": {
-        "visibility": 0
+        "visibility": 0.0
+      },
+      "resource_path": {
+        "visibility": 1.0
       }
     },
     "res://content/species/": {
       "metadata/_custom_type_script": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_local_to_scene": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_name": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_path": {
-        "visibility": 0
+        "visibility": 0.0
       }
     }
   },
   "recent_paths": [
     "res://content/moves/",
     "res://content/moves::use_effects/",
-    "res://content/species/"
+    "res://content/species/",
+    "res://content/conditions/",
+    "res://content/conditions::stat_modifiers/"
   ],
-  "table_functions": {}
+  "table_functions": {
+    "filter": [
+      "return true"
+    ],
+    "process": [
+      "return value"
+    ]
+  }
 }

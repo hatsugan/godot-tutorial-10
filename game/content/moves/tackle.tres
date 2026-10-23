@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://cwstkqw66672i"]
+
+[ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_h28ci"]
+[ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_6tkws"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_eoc7o"]
+
+[sub_resource type="Resource" id="Resource_0jgoe"]
+script = ExtResource("3_eoc7o")
+base_damage = 60
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[sub_resource type="Resource" id="Resource_mlu1b"]
+script = ExtResource("3_eoc7o")
+base_damage = 30
+ignore_type = true
+effect_verb_str = "hurts"
+outcome_filter = 1
+target_self = true
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_h28ci")
+name = "Tackle"
+type = 1
+use_message = "{user_name} barrels forward with {move_name}"
+base_accuracy = 0.7
+usage_max = 15
+use_effects = Array[ExtResource("2_6tkws")]([SubResource("Resource_0jgoe"), SubResource("Resource_mlu1b")])
+metadata/_custom_type_script = "uid://3l71cyerjkfn"

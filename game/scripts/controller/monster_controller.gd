@@ -3,29 +3,18 @@ extends Node
 var game_state: GameState
 var rng: RandomNumberGenerator
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Events.on_new_gamestate_created.connect(get_controller_components)
+@onready var fallback_move = load("res://content/moves/struggle.tres")
 
-func get_controller_components():
+
+# SETUP
+
+func _ready() -> void:
+	Events.on_new_gamestate_created.connect(setup_controller_components)
+
+func setup_controller_components():
 	game_state = GameRunner.game_state
 	rng = GameRunner.rng
 
-func get_monster_opponent(monster: Monster) -> Monster:
-	if monster == game_state.player_monster:
-		return game_state.opponent_monster
-	elif monster == game_state.opponent_monster:
-		return game_state.player_monster
-	else:
-		push_error("monster is neither player nor opponent monster")
-		return null
-		
-func adjust_monster_hp(monster: Monster, amount: int):
-	monster.hp = clamp(monster.hp + amount, 0, monster.max_hp)
-	
-	Events.on_monster_updated.emit(monster)
-	# TODO check fainting
-	
 func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
 	var monster = Monster.new()
 	monster.species = species
@@ -44,48 +33,81 @@ func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
 	
 	monster.moves = moves
 	
+	monster.fallback_move = Move.new()
+	monster.fallback_move.resource = fallback_move
+	monster.fallback_move.usages = 9999
+
 	return monster
-	
+
+
+# GETTERS
+
+func get_monster_opponent(monster: Monster) -> Monster:
+	if monster == game_state.player_monster:
+		return game_state.opponent_monster
+	elif monster == game_state.opponent_monster:
+		return game_state.player_monster
+	else:
+		push_error("monster is neither player nor opponent monster")
+		return null
+
 func get_current_monster() -> Monster:
 	if game_state.is_player_turn:
 		return game_state.player_monster
 	else:
 		return game_state.opponent_monster
 
+
+# MOVES
+
+func get_monster_move_by_index(monster: Monster, move_idx: int):
+	return monster.moves[move_idx]
+
 func use_monster_move_by_index(monster: Monster, move_idx: int):
-	var move = monster.moves[move_idx]
-	
+	use_monster_move(monster, get_monster_move_by_index(monster, move_idx))
+
+func use_monster_move(monster: Monster, move: Move):
 	# Log move use attempt
 	var use_message = move.use_message.format({"user_name": monster.name, "move_name": move.name})
 	Events.request_log.emit(use_message)
 		
-	if move.usages < 1:
+	if move.usages < 1 or monster.is_fainted():
 		Events.request_log.emit(" But it failed...")
-		GameRunner.on_turn_ended()
+		return
+	
+	if get_monster_opponent(monster).is_fainted():
+		monster.move_blocked = false
 		return
 	
 	# Check move not blocked
 	if monster.move_blocked:
 		Events.request_log.emit(" But if failed. %s cannot move..."%[monster.name])
 		monster.move_blocked = false
-		GameRunner.on_turn_ended()
 		return
 	
 	move.usages -= 1
 	
-	var rngf = rng.randf()
 	var move_acc = move.base_accuracy
-	print("move acc=%f rngf=%f"%[move_acc, rngf])
-	var does_hit = rngf < move_acc
 	
+	# HIT RNG
+	var does_hit = rng.randf() < move_acc
 	if !does_hit:
 		Events.request_log.emit("   But it misses!")
+	
+	# CRIT RNG
+	var does_crit = rng.randf() < SpecialCalcs.get_crit_chance(monster)
+	if does_crit and does_hit:
+		Events.request_log.emit(" Critical hit!")
+	
+	# RESOLVE EFFECTS
 	for effect in move.resource.use_effects:
-		if effect._should_do(does_hit):
-			effect._do(monster, move, game_state)
+		if effect._should_do(does_hit, does_crit):
+			effect._do(monster, move, game_state, does_crit)
 			
 	Events.on_monster_updated.emit(monster)
-	GameRunner.on_turn_ended()
+
+
+# CONDITIONS
 
 func instantiate_condition_on_monster(monster: Monster, condition_resource: ConditionResource):
 	# NOTE Lambda filter NEEDS a return!!
@@ -103,4 +125,34 @@ func end_condition(monster: Monster, condition: Condition):
 	monster.conditions.remove_at(monster.conditions.find(condition))
 	
 	Events.on_monster_updated.emit(monster)
+
+
+# RESOLVE TURN
+
+func adjust_monster_hp(monster: Monster, amount: int):
+	monster.hp = clamp(monster.hp + amount, 0, monster.max_hp)
 	
+	if monster.hp == 0:
+		faint_monster(monster)
+	
+	Events.on_monster_updated.emit(monster)
+
+func faint_monster(monster) -> void:
+	pass
+
+func resolve_turn(monster: Monster) -> void:
+	if monster.hp == 0:
+		return
+	
+	resolve_condition_effects(monster)
+	use_monster_move(monster, monster.selected_move)
+	# Cleanup
+	monster.clear_ephemeral()
+
+func resolve_condition_effects(monster: Monster):
+	for condition in monster.conditions:
+		for effect in condition.resource.on_begin_turn_effects:
+			effect._do(monster, condition, game_state)
+		condition.duration_remaining -= 1
+		if condition.duration_remaining <= 0:
+			MonsterController.end_condition(monster, condition)
