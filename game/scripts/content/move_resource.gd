@@ -9,3 +9,6 @@ class_name MoveResource extends Resource
 
 @export var usage_max: int = 20
 @export var use_effects: Array[TargetedEffect]
+
+@export var avfx_on_use: Array[AVFXResource]
+#@export var avfx_on_use: Array[AVFXResource] = [preload("res://content/avfx/move_monster/basic_melee.tres"), preload("res://content/avfx/sfx/basic_melee.tres")]

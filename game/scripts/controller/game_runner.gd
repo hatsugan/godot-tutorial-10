@@ -2,7 +2,7 @@ extends Node
 # The main script that controls the flow of the game.
 
 enum INTERACTION_MODE {NONE, FIGHT, ITEM, MON}
-enum PHASE {AWAIT_INPUT, RESOLVE_ROUND, GAME_OVER}
+enum PHASE {AWAIT_INPUT, RESOLVE_ROUND, AWAIT_AVFX, GAME_OVER}
 enum OUTCOME {TBD, WIN, LOSE, TIE}
 
 var game_state: GameState
@@ -24,6 +24,10 @@ func _ready():
 	Events.request_restart.connect(handle_game_restart)
 	Events.request_quit.connect(handle_game_quit)
 	
+	# AVFX
+	Events.on_avfx_block_start.connect(func(): game_phase = PHASE.AWAIT_AVFX) 
+	Events.on_avfx_block_end.connect(func(): game_phase = PHASE.AWAIT_INPUT) 
+	
 	Events.on_ui_ready.connect(setup_model)
 
 func setup_model():
@@ -43,21 +47,30 @@ func setup_model():
 
 	var monster1 = MonsterController.create_monster(species_salamander)
 	var monster2 = MonsterController.create_monster(species_turtle)
-	var monster3 = MonsterController.create_monster(species_dino)
+	var monster3 = MonsterController.create_monster(species_dino, "Dino Daniel")
+	var monster4 = MonsterController.create_monster(species_dino, "Dino Darnell")
 	
 	game_state.player = TrainerController.create_trainer([monster1, monster2], true, "Aures")
-	game_state.opponent = TrainerController.create_trainer([monster3], false, "Evil Guy")
+	game_state.opponent = TrainerController.create_trainer([monster3, monster4], false, "Evil Guy")
 
 	ProjLog.info("GameRunner setup complete.")
 	
 	log_round_header()
+	
+	#var clip = preload("res://assets/sound/Game_SFX_by_OwlishMedia/struggle.wav")
+	##Events.on_avfx_sfx.emit(clip)
+	#var v2f: Array[Vector2Float] = [Vector2Float.new(-20, 10, 0.5), Vector2Float.new(60, -30, 0.2)]
+	#get_tree().create_timer(2.0).timeout.connect(func(): Events.on_avfx_move.emit(game_state.player_monster, v2f))
+	
+	
+	#Events.on_avfx_move.emit(game_state.player_monster, [Vector2(12, 15), Vector2(-20, 42)])
 
 
 # RUN GAME
 
 func _process(_delta: float) -> void:
 	
-	#ProjLog.info("PHASE=%s   OUTCOME=%s"%[PHASE.find_key(game_phase), OUTCOME.find_key(game_outcome)])
+	ProjLog.info("PHASE=%s   OUTCOME=%s"%[PHASE.find_key(game_phase), OUTCOME.find_key(game_outcome)])
 	#
 	#if game_outcome != OUTCOME.TBD and game_phase == PHASE.GAME_OVER:
 		#pass
@@ -76,8 +89,10 @@ func _process(_delta: float) -> void:
 			game_phase = PHASE.AWAIT_INPUT
 			resolve_fainting()
 			game_state.current_round += 1
-			
 			log_round_header()
+			
+		PHASE.AWAIT_AVFX:
+			return
 			
 		PHASE.GAME_OVER:
 			Events.on_game_over.emit(game_outcome)

@@ -67,6 +67,7 @@ func use_monster_move_by_index(monster: Monster, move_idx: int):
 	use_monster_move(monster, get_monster_move_by_index(monster, move_idx))
 
 func use_monster_move(monster: Monster, move: Move):
+	var opponent_monster = get_monster_opponent(monster)
 	# Log move use attempt
 	var use_message = move.use_message.format({"user_name": monster.name, "move_name": move.name})
 	Events.request_log.emit(use_message)
@@ -75,7 +76,7 @@ func use_monster_move(monster: Monster, move: Move):
 		Events.request_log.emit(" But it failed...")
 		return
 	
-	if get_monster_opponent(monster).is_fainted():
+	if opponent_monster.is_fainted():
 		monster.move_blocked = false
 		return
 	
@@ -98,6 +99,12 @@ func use_monster_move(monster: Monster, move: Move):
 	var does_crit = rng.randf() < SpecialCalcs.get_crit_chance(monster)
 	if does_crit and does_hit:
 		Events.request_log.emit(" Critical hit!")
+	
+	# AVFX
+	AvfxManager.queue_avfx_fx_group(move.resource.avfx_on_use, monster)
+	#for avfx_res in move.resource.avfx_on_use:
+		#var avfx_target = monster if avfx_res.target_self else opponent_monster
+		#AvfxManager.queue_avfx_fx(avfx_res, avfx_target)
 	
 	# RESOLVE EFFECTS
 	for effect in move.resource.use_effects:

@@ -8,6 +8,10 @@
 
 config_version=5
 
+[accessibility]
+
+general/updates_per_second=10
+
 [addons]
 
 resources_spreadsheet_view/array_color_tint=100.0
@@ -39,6 +43,8 @@ GameRunner="*res://scripts/controller/game_runner.gd"
 MonsterController="*uid://dtqekxrxknvil"
 TrainerController="*uid://bnskibpjyw22s"
 ProjLog="*uid://c2a8en0bdua4w"
+SfxPlayer="*uid://dsws6fewkev3i"
+AvfxManager="*uid://ccq8l2331dufw"
 
 [dotnet]
 
@@ -46,7 +52,7 @@ project/assembly_name="Let-s Build a Monster Battler"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
+enabled=PackedStringArray("res://addons/QuickAudioPreview/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg")
 
 [rendering]
 

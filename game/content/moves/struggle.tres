@@ -1,8 +1,16 @@
 [gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://dthhofcfx5jqp"]
 
+[ext_resource type="Script" uid="uid://drvj4kitl0bc1" path="res://scripts/avfx/avfx_resources/avfx_resource.gd" id="1_55m4s"]
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_yh6g2"]
 [ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_1hdul"]
+[ext_resource type="AudioStream" uid="uid://ecdteobrmxl6" path="res://assets/sound/Game_SFX_by_OwlishMedia/tinyexplode.wav" id="2_3ehq3"]
+[ext_resource type="Script" uid="uid://nx4d17bfho54" path="res://scripts/avfx/avfx_resources/avfx_play_sfx.gd" id="3_eppt3"]
 [ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_mhxif"]
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_eppt3")
+clip = ExtResource("2_3ehq3")
+metadata/_custom_type_script = "uid://nx4d17bfho54"
 
 [sub_resource type="Resource" id="Resource_4w4es"]
 script = ExtResource("3_mhxif")
@@ -25,4 +33,5 @@ use_message = "{user_name} flails in desparation..."
 base_accuracy = 0.7
 usage_max = 9999
 use_effects = Array[ExtResource("2_1hdul")]([SubResource("Resource_4w4es"), SubResource("Resource_55m4s")])
+avfx_on_use = Array[ExtResource("1_55m4s")]([SubResource("Resource_tipki")])
 metadata/_custom_type_script = "uid://3l71cyerjkfn"

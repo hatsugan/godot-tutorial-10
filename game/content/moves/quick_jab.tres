@@ -1,7 +1,10 @@
 [gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://bm1e7tu6116uy"]
 
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_aml7c"]
+[ext_resource type="Script" uid="uid://drvj4kitl0bc1" path="res://scripts/avfx/avfx_resources/avfx_resource.gd" id="2_4ixo7"]
+[ext_resource type="Resource" uid="uid://28kyhc5onim4" path="res://content/avfx/move_monster/visual_basic_melee.tres" id="2_v0n8m"]
 [ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_ypgjl"]
+[ext_resource type="Resource" uid="uid://kvajrut4ox5i" path="res://content/avfx/sfx/sfx_basic_melee.tres" id="3_nfal2"]
 [ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_ypgjl"]
 
 [sub_resource type="Resource" id="Resource_br6pm"]
@@ -17,4 +20,5 @@ base_accuracy = 0.8
 priority = 1
 usage_max = 15
 use_effects = Array[ExtResource("2_ypgjl")]([SubResource("Resource_br6pm")])
+avfx_on_use = Array[ExtResource("2_4ixo7")]([ExtResource("2_v0n8m"), ExtResource("3_nfal2")])
 metadata/_custom_type_script = "uid://3l71cyerjkfn"

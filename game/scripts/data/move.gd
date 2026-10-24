@@ -24,3 +24,7 @@ var max_usages: int:
 # for duck typing in TargetedEffect
 func get_type() -> MonsterType.Type:
 	return type
+
+#func do_all_avfx(instance: AVFXInstance) -> void:
+	#for avfx in resource.avfx_on_use:
+		#avfx._do(instance)

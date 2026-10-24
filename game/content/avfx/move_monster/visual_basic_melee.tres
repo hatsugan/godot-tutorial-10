@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="AVFXMoveMonsterResource" format=3 uid="uid://28kyhc5onim4"]
+
+[ext_resource type="Script" uid="uid://bxl72h7cvlfm2" path="res://scripts/content/vector2_float.gd" id="1_3hgnt"]
+[ext_resource type="Script" uid="uid://dtkhhu7eqgdlm" path="res://scripts/avfx/avfx_resources/avfx_move_monster.gd" id="2_v31on"]
+
+[sub_resource type="Resource" id="Resource_lw5ie"]
+script = ExtResource("1_3hgnt")
+vec2 = Vector2(-10, 5)
+f = 3.0
+metadata/_custom_type_script = "uid://bxl72h7cvlfm2"
+
+[sub_resource type="Resource" id="Resource_f2t6n"]
+script = ExtResource("1_3hgnt")
+vec2 = Vector2(30, -15)
+f = 0.1
+metadata/_custom_type_script = "uid://bxl72h7cvlfm2"
+
+[resource]
+script = ExtResource("2_v31on")
+offsets_duration = Array[ExtResource("1_3hgnt")]([SubResource("Resource_lw5ie"), SubResource("Resource_f2t6n")])
+target_self = true
+metadata/_custom_type_script = "uid://dtkhhu7eqgdlm"

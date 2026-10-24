@@ -3,18 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://tovydk4i6a4q" path="res://assets/art/monsters/dino.png" id="1_htcjd"]
 [ext_resource type="Script" uid="uid://7betxel25rv8" path="res://scripts/content/species_resource.gd" id="1_pqx4l"]
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="3_gfe2g"]
-[ext_resource type="Resource" uid="uid://cwstkqw66672i" path="res://content/moves/tackle.tres" id="4_74jmo"]
-[ext_resource type="Resource" uid="uid://cxkul77gxkea8" path="res://content/moves/thorn.tres" id="4_br6pm"]
-[ext_resource type="Resource" uid="uid://xdeavx7x3eb2" path="res://content/moves/strike.tres" id="5_t0a13"]
-[ext_resource type="Resource" uid="uid://c6r72sxdkrgsn" path="res://content/moves/sting_cytotoxin.tres" id="7_d8rw1"]
+[ext_resource type="Resource" uid="uid://bm1e7tu6116uy" path="res://content/moves/quick_jab.tres" id="4_br6pm"]
 
 [resource]
 script = ExtResource("1_pqx4l")
 image = ExtResource("1_htcjd")
 name = "Dino"
 type = 4
-starter_moves = Array[ExtResource("3_gfe2g")]([ExtResource("4_74jmo"), ExtResource("5_t0a13"), ExtResource("4_br6pm"), ExtResource("7_d8rw1")])
-base_max_hp = 23
+starter_moves = Array[ExtResource("3_gfe2g")]([ExtResource("4_br6pm")])
+base_max_hp = 50
 base_attack = 6
 base_defence = 6
 base_speed = 12

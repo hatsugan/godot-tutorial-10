@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://ca4tmlywk0wb2"]
 
 [ext_resource type="Script" uid="uid://3l71cyerjkfn" path="res://scripts/content/move_resource.gd" id="1_dwguc"]
+[ext_resource type="Script" uid="uid://drvj4kitl0bc1" path="res://scripts/avfx/avfx_resources/avfx_resource.gd" id="1_yx2ie"]
 [ext_resource type="Script" uid="uid://b2815xi60aqea" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_h48l8"]
 [ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_yx2ie"]
 

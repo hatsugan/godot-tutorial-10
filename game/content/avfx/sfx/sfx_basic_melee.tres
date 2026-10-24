@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AVFXPlaySFXResource" format=3 uid="uid://kvajrut4ox5i"]
+
+[ext_resource type="Script" uid="uid://nx4d17bfho54" path="res://scripts/avfx/avfx_resources/avfx_play_sfx.gd" id="1_1761g"]
+[ext_resource type="AudioStream" uid="uid://b5mtv05fhpxb4" path="res://assets/sound/Game_SFX_by_OwlishMedia/slap.wav" id="1_vn2tb"]
+
+[resource]
+script = ExtResource("1_1761g")
+clip = ExtResource("1_vn2tb")
+metadata/_custom_type_script = "uid://nx4d17bfho54"

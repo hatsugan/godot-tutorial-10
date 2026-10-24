@@ -35,6 +35,8 @@ func connect_events() -> void:
 	Events.on_monster_added_to_battle.connect(maybe_bind_monster)
 	Events.on_monster_updated.connect(maybe_update_monster)
 	
+	Events.on_avfx_move.connect(move_monster)
+	
 	return
 	
 func maybe_update_monster(monster: Monster):
@@ -53,7 +55,20 @@ func maybe_bind_monster(monster: Monster, is_player_monster: bool):
 		update()
 	#else:
 		##print("skip update pov mismatch")
+
+func move_monster(instance: AVFXInstance, v2fs: Array[Vector2Float], return_duration: float = 0.2):
+	ProjLog.debug("Tweening")
+	if instance.target != bound_monster:
+		return
+	
+	var tween = get_tree().create_tween()
+	for v2f in v2fs:
+		tween.tween_property(sprite, "offset", v2f.vec2, v2f.f)
+		pass
 		
+	tween.tween_property(sprite, "offset", Vector2.ZERO, return_duration)
+	tween.tween_callback(instance.finish)
+
 func update():
 	if bound_monster == null:
 		#print("skip update (null)")
